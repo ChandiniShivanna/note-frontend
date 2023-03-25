@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import "./sign.css"
 import {Link, useNavigate} from "react-router-dom"
-import  Axios from 'axios';
-
 function Signup(props) {
     const navigate = useNavigate()
     const [form, setForm] = useState({email:"", password:""})
@@ -15,16 +13,23 @@ function Signup(props) {
             return alert("password and confirm password must be matched")
         }
         else{
-           Axios.post("https://note-backend-vvfj.onrender.com"+"/register", { //https://note-backend-vvfj.onrender.com
-           email:form.email,
-           password:form.password
-        }).then((res=>{
-
-        })).catch((e)=>{
-            console.log(e);
-        })
+           fetch("https://note-backend-vvfj.onrender.com/v1/register", {
+            method:"post",
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+                },
+            body:JSON.stringify(form)
+           }).then((res)=>{
+            return res.json()
+           }).then(jdata=>{
+            alert(jdata.message)
+            navigate("/")
+           }).catch((e)=>{
+            console.log(e)
+           })
+        }
     }
-}
     return (
         <div className='container'>
             <form onSubmit={handleSubmit}>
@@ -49,7 +54,7 @@ function Signup(props) {
                     <button >Submit</button>
                 </div>
                 <div className='forgot'>
-                    <Link to={"/"}>Sign IN</Link>
+                    <Link to={"/"}>Click to SignIN</Link>
                 </div>
             </form>
         </div>

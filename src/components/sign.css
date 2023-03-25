@@ -6,20 +6,20 @@
 .container{
     width: 100vw;
     height: 100vh;
-    background-color: dodgerblue;
+    background-color:dodgerblue;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-form{
+.container form{
     width: 400px;
     min-height: 60%;
     background-color: white;
     border-radius:1rem;
     padding: 1rem; 
 }
-form>h1{
+.container form>h1{
     text-align: center;
 }
 .form-inputs{
@@ -38,7 +38,7 @@ form>h1{
     font-weight: 700;
 }
 .form-inputs>button{
-    background-color:  cadetblue;
+    background-color:  dodgerblue;
     border: none;
     outline: none;
     cursor: pointer;

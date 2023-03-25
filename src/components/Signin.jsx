@@ -1,25 +1,38 @@
 import React, {useState} from 'react';
-import Axios from'axios'
 import "./sign.css"
-import { json, Link, Navigate, useNavigate } from 'react-router-dom';
+import { json, Link, useNavigate } from 'react-router-dom';
 function Signin(props) {
     const navigator = useNavigate()
-
     const [form, setForm] = useState({email:"", password:""})
     const [rem, setRem] = useState("off")
     const handleSubmit=(e)=>{
         e.preventDefault()
-           Axios.post("https://note-backend-vvfj.onrender.com"+"/login", { //https://note-backend-vvfj.onrender.com
-           email:form.email,
-           password:form.password
-        }).then((res)=>{
-                localStorage.setItem('token',res.form.Token)
-                localStorage.setItem('email',res.form.email)
-                navigator('/home')
-        }).catch((e)=>{
-            console.log(e);
-        })
-    }
+           fetch("https://note-backend-vvfj.onrender.com/v1/login", {
+            method:"post",
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+                },
+            body:JSON.stringify(form)
+           }).then((res)=>{
+            return res.json()
+           }).then(jdata=>{
+            if(json.error){
+                return alert(json.error)
+            }
+            else{
+                if(jdata.token){
+                    localStorage.setItem("notToken", JSON.stringify(jdata.token))
+                    alert(jdata.message)
+                    navigator("/home")
+                }
+            }
+            
+           }).catch((e)=>{
+            console.log(e)
+           })
+        }
+    
     return (
         <div className='container'>
             <form onSubmit={handleSubmit}>
@@ -41,7 +54,7 @@ function Signin(props) {
                 </div>
                 <div className='forgot'>
                     <p>Forgot<span style={{color:"blue"}}>password?</span></p>
-                    <Link to={"/signup"}>Sign Up</Link>
+                    <Link to={"/signup"}>Click to Sign Up</Link>
                 </div>
             </form>
         </div>
