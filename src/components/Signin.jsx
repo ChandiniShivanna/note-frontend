@@ -20,30 +20,6 @@ function Signin(props) {
             console.log(e);
         })
     }
-        //     headers: {
-        //         'Accept': 'application/json',
-        //         'Content-Type': 'application/json'
-        //         },
-        //     body:JSON.stringify(form)
-        //    }).then((res)=>{
-        //     return res.json()
-        //    }).then(jdata=>{
-        //     if(json.error){
-        //         return alert(json.error)
-        //     }
-        //     else{
-        //         if(jdata.token){
-        //             localStorage.setItem("notToken", JSON.stringify(jdata.token))
-        //             alert(jdata.message)
-        //             navigator("/home")
-        //         }
-        //     }
-            
-        //    }).catch((e)=>{
-        //     console.log(e)
-        //    })
-        // }
-    
     return (
         <div className='container'>
             <form onSubmit={handleSubmit}>
@@ -65,7 +41,7 @@ function Signin(props) {
                 </div>
                 <div className='forgot'>
                     <p>Forgot<span style={{color:"blue"}}>password?</span></p>
-                    <Link to={"/signup"}>Go TO Sign Up</Link>
+                    <Link to={"/signup"}>Sign Up</Link>
                 </div>
             </form>
         </div>

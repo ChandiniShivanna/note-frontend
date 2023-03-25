@@ -24,6 +24,7 @@ function Signup(props) {
             console.log(e);
         })
     }
+}
     return (
         <div className='container'>
             <form onSubmit={handleSubmit}>
@@ -48,7 +49,7 @@ function Signup(props) {
                     <button >Submit</button>
                 </div>
                 <div className='forgot'>
-                    <Link to={"/"}>Go TO Sign IN</Link>
+                    <Link to={"/"}>Sign IN</Link>
                 </div>
             </form>
         </div>
